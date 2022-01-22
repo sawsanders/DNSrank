@@ -1,3 +1,5 @@
+192.168.10.21#unbound#5354
+192.168.20.20#unbound#5354
 127.0.0.1#localhost#53
 1.1.1.1#CloudFlare#53
 8.8.8.8#Google#53
