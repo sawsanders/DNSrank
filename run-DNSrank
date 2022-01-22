@@ -92,7 +92,7 @@ if [ $check4update != "true" ] && [ $check4update != "false" ]; then
 fi
 
 # Set script git home
-githome="https://github.com/Deepcuts/DNSrank"
+githome="https://github.com/sawsanders/DNSrank"
 
 # Set colors for various messages marking.
 GREEN=$(tput setaf 2)
