@@ -31,7 +31,7 @@ ServersFile=servers.txt
 # File containing the list of domains. One domain per line. Example: 1,example1.com ( rank#domain.tld )
 # Bundled domains source: https://statvoo.com/dl/top-1million-sites.csv.zip
 # hint: edit the actual file to add/modify domain names.
-DomainsFile=domains.txt
+DomainsFile=/home/pi/mydomains.txt
 
 # How many domains to test from $DomainsFile?. Script comes with top 1 milion domains in format 1,example1.com where 1 is the rank. Testing all bundled domains is not advised.
 # Recommended values: 100 (quick test, not very conclusive), 1000 (good balance, pretty conclusive) or 10000 (very good coverage, conclusive). Test with over 10000 domains at your own peril.
@@ -149,7 +149,7 @@ ISPCI=""
 ISPCO=""
 
 # Build domains list to test, taking into consideration $DomainsTestCount and cutting the rank number and ,
-Domains=$(cat $DomainsFile |head -n $DomainsTestCount| cut -d "," -f2-)
+Domains=$(cat $DomainsFile |head -n $DomainsTestCount)
 
 # Build servers list to test.
 Servers=$(cat "$ServersFile") 
