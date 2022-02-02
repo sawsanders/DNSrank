@@ -7,9 +7,9 @@
 #  | |  | | . ` |\___ \| '__/ _` | '_ \| |/ /  #
 #  | |__| | |\  |____) | | | (_| | | | |   <   #
 #  |_____/|_| \_|_____/|_|  \__,_|_| |_|_|\_\  #
-# 				                               #  
-#  DNSrank version 1.3/23.Jan.2022	           #
-#  License: GPL-3.0			                   #
+# 				               #  
+#  DNSrank version 1.3/23.Jan.2022	       #
+#  License: GPL-3.0			       #
 #  Github: https://github.com/Deepcuts/DNSrank #
 #  razvan.constantin@gmail.com	       	       #	
 #______________________________________________#
@@ -36,7 +36,7 @@ DomainsFile=/home/pi/mydomains.txt
 # How many domains to test from $DomainsFile?. Script comes with top 1 milion domains in format 1,example1.com where 1 is the rank. Testing all bundled domains is not advised.
 # Recommended values: 100 (quick test, not very conclusive), 1000 (good balance, pretty conclusive) or 10000 (very good coverage, conclusive). Test with over 10000 domains at your own peril.
 # Default 1000
-DomainsTestCount=500
+DomainsTestCount=200
 
 # Sets the timeout for a DNS query in seconds. Setting this to a much larger value will greatly increase total testing time with no real benefit. Keep it around 2 seconds.
 # Default 2
@@ -106,6 +106,11 @@ YELLOW=$(tput setaf 3)
 RED=$(tput setaf 1)
 normal=$(tput sgr0)
 
+# Creating domains file from Pi-hole database
+printf "Creating new domain list from Pi-hole database \n"
+pihole-FTL sql "/etc/pihole/pihole-FTL.db" "SELECT domain FROM queries WHERE (STATUS == 2 OR STATUS == 3) GROUP BY domain ORDER BY count(domain) DESC LIMIT 200" > /home/pi/mydomains.txt
+printf "Finished! Moving on. \n"
+
 # Checking if required files exist.
 if [ ! -f "$DomainsFile" ]; then
     printf "${RED}$DomainsFile file not found. Download it from $githome or create it yourself and add some domains in format 1,example1.com. Script halted! ${normal} \n"
@@ -145,7 +150,7 @@ fi
 # Zeroing required variables just in case.
 totalservers=""
 totaldomains=""
-badservers=""
+badservers="0"
 testedservers=""
 totalservers=""
 d1=""
@@ -314,7 +319,7 @@ for s1 in $Servers; do
 done
 # Main loop done.
 echo ""
-if [ $badservers -ge 1 ]; then
+if [ "$badservers" -ge 1 ]; then
     testedservers=$((totalservers - badservers))
     # Some grammar fixes.
     if [ $testedservers -eq 1 ]; then
@@ -334,6 +339,6 @@ if [ $badservers -ge 1 ]; then
     printf "\n%s" "$badservers out of $totalservers $gservers failed to respond to DNS queries. $testedservers $g1servers responded to queries and $g1has been tested. \n"
 else
     # Notify that all configured servers were reachable and tested.
-    printf "\n%s" "$totalservers $gservers responded to queries and $ghas been tested. \n"
+    printf "$totalservers $gservers responded to queries and $ghas been tested. \n"
 fi
 exit 0;
