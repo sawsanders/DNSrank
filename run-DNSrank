@@ -150,7 +150,7 @@ fi
 # Zeroing required variables just in case.
 totalservers=""
 totaldomains=""
-badservers=""
+badservers="0"
 testedservers=""
 totalservers=""
 d1=""
