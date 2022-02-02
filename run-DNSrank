@@ -339,6 +339,6 @@ if [ "$badservers" -ge 1 ]; then
     printf "\n%s" "$badservers out of $totalservers $gservers failed to respond to DNS queries. $testedservers $g1servers responded to queries and $g1has been tested. \n"
 else
     # Notify that all configured servers were reachable and tested.
-    printf "\n%s" "$totalservers $gservers responded to queries and $ghas been tested. \n"
+    printf "$totalservers $gservers responded to queries and $ghas been tested. \n"
 fi
 exit 0;
