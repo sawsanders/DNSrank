@@ -18,3 +18,5 @@ If you are intercepting DNS requests on your gateway, make sure to add an except
 3. Edit the file ***servers.txt*** to add or remove DNS servers. Some servers are already setup.
 4. Edit the file ***domains.txt*** to add or remove test domains. Some domains are already setup.
 5. Execute `./run-DNSrank` to start testing.
+
+EDIT: I have changed this script to pull the configured number of most used, non-blocked domains from you own Pi-hole database and use those for the test. This seems like a better real world test of resolvers to me.
