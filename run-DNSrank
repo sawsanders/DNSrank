@@ -36,7 +36,7 @@ DomainsFile=/home/pi/mydomains.txt
 # How many domains to test from $DomainsFile?. Script comes with top 1 milion domains in format 1,example1.com where 1 is the rank. Testing all bundled domains is not advised.
 # Recommended values: 100 (quick test, not very conclusive), 1000 (good balance, pretty conclusive) or 10000 (very good coverage, conclusive). Test with over 10000 domains at your own peril.
 # Default 1000
-DomainsTestCount=500
+DomainsTestCount=200
 
 # Sets the timeout for a DNS query in seconds. Setting this to a much larger value will greatly increase total testing time with no real benefit. Keep it around 2 seconds.
 # Default 2
