@@ -108,7 +108,7 @@ normal=$(tput sgr0)
 
 # Creating domains file from Pi-hole database
  printf "Creating new domain list from Pi-hole database... \n"
- pihole-FTL sql "/etc/pihole/pihole-FTL.db" "SELECT domain FROM queries WHERE (STATUS == 2 OR STATUS == 3) GROUP BY domain ORDER BY count(domain) DESC LIMIT $DomainsTestCount" > /home/pi/mydomains.txt
+ sudo pihole-FTL sql "/etc/pihole/pihole-FTL.db" "SELECT domain FROM queries WHERE (STATUS == 2 OR STATUS == 3) GROUP BY domain ORDER BY count(domain) DESC LIMIT $DomainsTestCount" > /home/pi/mydomains.txt
  printf "Finished! Moving on. \n"
 
 # Checking if required files exist.
