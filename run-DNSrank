@@ -285,7 +285,7 @@ for s1 in $Servers; do
     troute=`sudo traceroute -n -I "$sip" 2>/dev/null | tail -1 | awk '{print $1}'`
     # Find average rtt to each DNS server with ping.
     rttavg=`ping -W 2 -i 1 -n -c $pingtime $sip | tail -1 | awk '{print $4}' | cut -d '/' -f 2`
-    dnsversion=`dig version.bind txt chaos @$sip | grep "version.bind" | tail -n1 | cut -d T -f 3- | xargs`
+    dnsversion=`dig -p $sport version.bind txt chaos @$sip | grep "version.bind" | tail -n1 | cut -d T -f 3- | xargs`
     [ -z "$dnsversion" ] && dnsversion=Unknown
     ftime=0
     # Loop all domains.
