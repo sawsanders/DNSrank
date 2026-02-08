@@ -12,7 +12,7 @@ If you are intercepting DNS requests on your gateway, make sure to add an except
 
 1. Run the following code to clone this repo and make the script executable.
 
-`git clone (https://github.com/sawsanders/DNSrank.git) && cd ./DNSrank && chmod u+x run-DNSrank`
+`git clone https://github.com/sawsanders/DNSrank.git && cd ./DNSrank && chmod u+x run-DNSrank`
 
 2. Edit the file ***run-DNSrank*** to set up some parameters. Defaults should work out of the box.
 3. Edit the file ***servers.txt*** to add or remove DNS servers. Some servers are already setup.
